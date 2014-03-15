@@ -94,3 +94,11 @@ acute_kidney_failure_compare.pcap |  |  |
 acute_kidney_failure_compare2.pcap |  |  | 
 
 WILL ADD SYMPTOM CHECK RESPONSE, SECOND SYMPTOM CHECKER REQUEST.
+
+# Getting some metrics on the packets:
+1. `cd sig_checker`
+- `./PktReader.py`
+
+# Generating a guess for a packet dump:
+- `./main.py fileName` - e.g. `./main.py testFiles/acute1.text`
+
