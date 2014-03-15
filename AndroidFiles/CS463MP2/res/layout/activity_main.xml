@@ -14,7 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/start" />
+        android:text="@string/start" 
+        android:onClick="startMonitoring"
+        tools:context=".MainActivity"/>
 
     <Button
         android:id="@+id/stopButton"
