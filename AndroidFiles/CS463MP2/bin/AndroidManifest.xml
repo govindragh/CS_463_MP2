@@ -6,9 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="12"
-        android:targetSdkVersion="17" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+        android:targetSdkVersion="19" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -23,10 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-      <service 
-          android:name="TrafficService">
-      </service>
        <service 
           android:name="MonitorService">
       </service>

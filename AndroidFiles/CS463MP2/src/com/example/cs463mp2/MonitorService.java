@@ -18,6 +18,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class MonitorService extends Service {
+	
 	private final IBinder mBinder = new MyBinder();
 	private long StartRxBytes = 0;
 	private long tempRxBytes = 0;
@@ -48,11 +49,14 @@ public class MonitorService extends Service {
 						|| StartRxPackets != tempRxPackets
 						|| StartTxPackets != tempTxPackets) {
 					Log.i("Difference detected", "Difference in files detected");
-					File root = android.os.Environment
+					/*File root = android.os.Environment
 							.getExternalStorageDirectory();
 					File dir = new File(root.getAbsolutePath()
 							+ "/webMDTraffic");
-					dir.mkdirs();
+					dir.mkdirs();*/
+				/*	ContextWrapper cw = new ContextWrapper(getBaseContext());
+					File dir = cw.getDir("root", Context.MODE_PRIVATE);*/
+					File dir = getFilesDir();
 					File file = new File(dir, "test.txt");
 					try {
 						BufferedWriter writer = new BufferedWriter(
@@ -100,9 +104,6 @@ public class MonitorService extends Service {
 					Log.i("TxPackets Change",
 							"StartTxPackets is: " + String.valueOf(StartTxPackets));
 				}
-				// StartRxPackets = TrafficStats.getUidRxPackets(UID);
-				// StartTxPackets = TrafficStats.getUidTxPackets(UID);
-
 			}
 
 		};
@@ -111,7 +112,7 @@ public class MonitorService extends Service {
 			public void run() {
 				while (stop == 0) {
 					try {
-						Thread.sleep(500);
+						Thread.sleep(100);
 						handler.sendEmptyMessage(0);
 
 					} catch (InterruptedException e) {
@@ -124,16 +125,16 @@ public class MonitorService extends Service {
 		}).start();
 	}
 
-	public long getStartRxBytes() {
-		return StartRxBytes;
-	}
 
-	public long getStartTxBytes() {
-		return StartTxBytes;
-	}
 
 	public void setStop() {
 		stop = 1;
+	}
+	public void setStopOff() {
+		stop = 0;
+	}
+	public int getStop() {
+		return stop;
 	}
 
 	public IBinder onBind(Intent arg0) {
